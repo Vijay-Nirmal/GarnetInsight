@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   clusterSelector,
@@ -53,7 +53,7 @@ import {
   setUrlHandlingInitialState,
 } from 'uiSrc/slices/app/url-handling'
 import { UrlHandlingActions } from 'uiSrc/slices/interfaces/urlHandling'
-import { CREATE_CLOUD_DB_ID } from 'uiSrc/pages/home/constants'
+import { CREATE_CLOUD_DB_ID, AddDbType } from 'uiSrc/pages/home/constants'
 import { appFeatureFlagsFeaturesSelector } from 'uiSrc/slices/app/features'
 
 import { Page, PageBody } from 'uiSrc/components/base/layout/page'
@@ -105,6 +105,8 @@ const HomePage = () => {
   const { data: editedInstance } = useSelector(editedInstanceSelector)
 
   const { contextInstanceId } = useSelector(appContextSelector)
+
+  const [azureInitialValues, setInitialValues] = useState<any>(null)
 
   const predefinedInstances = [
     {
@@ -221,6 +223,7 @@ const HomePage = () => {
 
     setOpenDialog(null)
     dispatch(setEditedInstance(null))
+    setInitialValues(null)
 
     if (action === UrlHandlingActions.Connect) {
       dispatch(setUrlHandlingInitialState())
@@ -231,7 +234,12 @@ const HomePage = () => {
     })
   }
 
-  const handleAddInstance = () => {
+  const handleAddInstance = (initialValues?: any) => {
+    if (initialValues) {
+      setInitialValues(initialValues)
+    } else {
+      setInitialValues(null)
+    }
     setOpenDialog(OpenDialogName.AddDatabase)
     dispatch(setEditedInstance(null))
   }
@@ -277,8 +285,9 @@ const HomePage = () => {
                 editedInstance={
                   openDialog === OpenDialogName.EditDatabase
                     ? editedInstance
-                    : (sentinelInstance ?? null)
+                    : (sentinelInstance ?? azureInitialValues ?? null)
                 }
+                initConnectionType={azureInitialValues ? AddDbType.manual : null}
                 onClose={
                   openDialog === OpenDialogName.EditDatabase
                     ? closeEditDialog

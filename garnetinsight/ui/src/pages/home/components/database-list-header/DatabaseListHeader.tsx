@@ -35,11 +35,12 @@ import { PlusIcon } from 'uiSrc/components/base/icons'
 import ColumnsConfigPopover from 'uiSrc/components/columns-config/ColumnsConfigPopover'
 import handleClickFreeCloudDb from '../database-list-component/methods/handleClickFreeCloudDb'
 import SearchDatabasesList from '../search-databases-list'
+import AzureConnectionModal from '../azure-connection/AzureConnectionModal'
 
 import styles from './styles.module.scss'
 
 export interface Props {
-  onAddInstance: () => void
+  onAddInstance: (initialValues?: any) => void
 }
 
 const DatabaseListHeader = ({ onAddInstance }: Props) => {
@@ -48,6 +49,7 @@ const DatabaseListHeader = ({ onAddInstance }: Props) => {
   const { loading, data } = useSelector(contentSelector)
 
   const [promoData, setPromoData] = useState<ContentCreateRedis>()
+  const [isAzureModalOpen, setIsAzureModalOpen] = useState(false)
 
   const { theme } = useContext(ThemeContext)
   const { [FeatureFlags.enhancedCloudUI]: enhancedCloudUIFeature } =
@@ -74,6 +76,11 @@ const DatabaseListHeader = ({ onAddInstance }: Props) => {
       },
     })
     onAddInstance()
+  }
+
+  const handleAzureConnect = (details: any) => {
+    setIsAzureModalOpen(false)
+    onAddInstance(details)
   }
 
   const handleClickLink = (event: TelemetryEvent, eventData: any = {}) => {
@@ -131,6 +138,17 @@ const DatabaseListHeader = ({ onAddInstance }: Props) => {
     </FeatureFlagComponent>
   )
 
+  const AddAzureInstanceButton = () => (
+    <EmptyButton
+      variant="primary"
+      onClick={() => setIsAzureModalOpen(true)}
+      data-testid="add-azure-database"
+      icon={PlusIcon}
+    >
+      Connect existing azure database
+    </EmptyButton>
+  )
+
   const CreateBtn = ({ content }: { content: ContentCreateRedis }) => {
     if (!isShowPromoBtn) return null
 
@@ -178,6 +196,7 @@ const DatabaseListHeader = ({ onAddInstance }: Props) => {
         <FlexItem direction="row" $gap="m">
           <AddCloudInstanceButton />
           <AddLocalInstanceButton />
+          <AddAzureInstanceButton />
         </FlexItem>
         {!loading && !isEmpty(data) && (
           <FlexItem className={cx(styles.promo)}>
@@ -204,6 +223,12 @@ const DatabaseListHeader = ({ onAddInstance }: Props) => {
         )}
       </Row>
       <Spacer className={styles.spacerDl} />
+      {isAzureModalOpen && (
+        <AzureConnectionModal
+          onClose={() => setIsAzureModalOpen(false)}
+          onConnect={handleAzureConnect}
+        />
+      )}
     </div>
   )
 }

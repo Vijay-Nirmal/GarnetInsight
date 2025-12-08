@@ -82,7 +82,7 @@
   "win": {
     "target": ["nsis"],
     "artifactName": "Garnet-Insight-${os}-installer.${ext}",
-    "icon": "resources/icon.ico",
+    "icon": "resources/icons/1024x1024.png",
     "legalTrademarks": "Vijay Nirmal"
   },
   "nsis": {

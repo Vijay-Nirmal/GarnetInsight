@@ -96,7 +96,7 @@ export default defineConfig({
     include: ['monaco-editor', 'monaco-yaml/yaml.worker'],
     exclude: [
       'react-json-tree',
-      'garnetinsight-plugin-sdk',
+      'redisinsight-plugin-sdk',
       'plotly.js-dist-min',
       '@antv/x6',
       '@antv/x6-react-shape',

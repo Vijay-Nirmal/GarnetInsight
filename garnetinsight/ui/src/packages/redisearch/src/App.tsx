@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import { isArray } from 'lodash'
-import { setHeaderText } from 'garnetinsight-plugin-sdk'
+import { setHeaderText } from 'redisinsight-plugin-sdk'
 
 import {
   parseInfoRawResponse,

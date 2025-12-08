@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { trim } from 'lodash';
 import {
   getFile,
   updateFolderFromArchive,
@@ -10,11 +11,11 @@ const PATH_CONFIG = get('dir_path');
 const CONTENT_CONFIG = get('content');
 
 const archiveUrl = new URL(
-  path.join(CONTENT_CONFIG.updateUrl, CONTENT_CONFIG.zip),
+  `${trim(CONTENT_CONFIG.updateUrl, '/')}/${trim(CONTENT_CONFIG.zip, '/')}`,
 ).toString();
 
 const buildInfoUrl = new URL(
-  path.join(CONTENT_CONFIG.updateUrl, CONTENT_CONFIG.buildInfo),
+  `${trim(CONTENT_CONFIG.updateUrl, '/')}/${trim(CONTENT_CONFIG.buildInfo, '/')}`,
 ).toString();
 
 async function init() {

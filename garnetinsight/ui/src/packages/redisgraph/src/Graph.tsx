@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react'
 import * as d3 from 'd3'
-import { executeRedisCommand, formatRedisReply } from 'garnetinsight-plugin-sdk'
+import { executeRedisCommand, formatRedisReply } from 'redisinsight-plugin-sdk'
 import Graphd3, { IGraphD3 } from './graphd3'
 import { responseParser } from './parser'
 import {
