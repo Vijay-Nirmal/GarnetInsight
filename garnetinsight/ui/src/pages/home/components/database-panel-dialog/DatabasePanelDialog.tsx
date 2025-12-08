@@ -80,6 +80,15 @@ const DatabasePanelDialog = (props: Props) => {
   }, [])
 
   useEffect(() => {
+    if (
+      props.initConnectionType !== null &&
+      props.initConnectionType !== undefined
+    ) {
+      setConnectionType(props.initConnectionType)
+    }
+  }, [props.initConnectionType])
+
+  useEffect(() => {
     if (action === UrlHandlingActions.Connect) {
       setConnectionType(AddDbType.manual)
       setInitialValues(dbConnection)

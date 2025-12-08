@@ -1,4 +1,4 @@
-# Garnetinsight-plugin-sdk
+# redisinsight-plugin-sdk
 
 The high-level API for communication between Garnet Insight
 plugin and Garnet Insight application.
@@ -6,9 +6,9 @@ plugin and Garnet Insight application.
 ## Usage
 
 ```
-npm install garnetinsight-plugin-sdk
+npm install redisinsight-plugin-sdk
 or
-yarn add garnetinsight-plugin-sdk
+yarn add redisinsight-plugin-sdk
 ```
 
 ## Available methods
@@ -24,7 +24,7 @@ Sets any custom text to the header of the command result
 **Example:**
 
 ```js
-import { setHeaderText } from 'garnetinsight-plugin-sdk';
+import { setHeaderText } from 'redisinsight-plugin-sdk';
 setHeaderText('Matched: 10');
 ```
 
@@ -52,7 +52,7 @@ Executes a Redis command _(currently, only read-only commands are supported)_.
 **Example:**
 
 ```js
-import { executeRedisCommand } from 'garnetinsight-plugin-sdk';
+import { executeRedisCommand } from 'redisinsight-plugin-sdk';
 try {
   const result = await executeRedisCommand('GET foo');
   const [{ response, status }] = result;
@@ -89,7 +89,7 @@ Throw an error if the state has not been saved.
 **Example:**
 
 ```js
-import { getState } from 'garnetinsight-plugin-sdk';
+import { getState } from 'redisinsight-plugin-sdk';
 try {
   const result = await getState();
 } catch (e) {
@@ -117,7 +117,7 @@ Save the state for the command visualization.
 **Example:**
 
 ```js
-import { setState } from 'garnetinsight-plugin-sdk';
+import { setState } from 'redisinsight-plugin-sdk';
 try {
   await setState({ a: 1, b: 2 });
 } catch (e) {
@@ -148,7 +148,7 @@ Returns string with parsed cli-like response
 **Example:**
 
 ```js
-import { formatRedisReply } from 'garnetinsight-plugin-sdk';
+import { formatRedisReply } from 'redisinsight-plugin-sdk';
 
 try {
   const parsedReply = await formatRedisReply(data[0].response, command);

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Model, Graph } from '@antv/x6'
 import { register } from '@antv/x6-react-shape'
 import Hierarchy from '@antv/hierarchy'
-import { formatRedisReply } from 'garnetinsight-plugin-sdk'
+import { formatRedisReply } from 'redisinsight-plugin-sdk'
 
 import { RiIcon } from 'uiSrc/components/base/icons/RiIcon'
 import { RiTooltip } from 'uiSrc/components/base/tooltip/RITooltip'

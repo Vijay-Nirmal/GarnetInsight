@@ -6,11 +6,15 @@ enum IpcInvokeEvent {
   windowOpen = 'window:open',
   themeChange = 'theme:change',
   appRestart = 'app:restart',
+  azureStartDeviceLogin = 'azure:start:device:login',
+  azurePollForToken = 'azure:poll:for:token',
+  azureGetCosmosToken = 'azure:get:cosmos:token',
 }
 
 enum IpcOnEvent {
   sendWindowId = 'window:send:id',
   cloudOauthCallback = 'cloud:oauth:callback',
+  azureOauthCallback = 'azure:oauth:callback',
   deepLinkAction = 'deep-link:action',
   appUpdateAvailable = 'app:update:available',
 }

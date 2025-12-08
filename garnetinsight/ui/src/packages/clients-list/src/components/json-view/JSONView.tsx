@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import JSONBigInt from 'json-bigint'
-import { formatRedisReply } from 'garnetinsight-plugin-sdk'
+import { formatRedisReply } from 'redisinsight-plugin-sdk'
 import JsonPretty from './components/json-pretty'
 
 interface Props {
